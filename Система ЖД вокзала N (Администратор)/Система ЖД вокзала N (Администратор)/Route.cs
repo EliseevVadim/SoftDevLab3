@@ -16,6 +16,7 @@ namespace Система_ЖД_вокзала_N__Администратор_
         private ushort number_of_places_reserved_;
         private string departue_time_;
         private string arrival_time_;
+        #region Конструкторы
         public Route()
         {
             start_point_ = string.Empty;
@@ -34,6 +35,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
             departue_time_ = departure_time;
             arrival_time_ = arrival_time;
         }
+        #endregion
+        #region Сеттеры
         public void SetStartPoint(string start_point)
         {
             start_point_ = start_point;
@@ -58,6 +61,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
         {
             arrival_time_ = arrival_time;
         }
+        #endregion
+        #region Геттеры
         public string GetStartPoint()
         {
             return start_point_;
@@ -82,6 +87,11 @@ namespace Система_ЖД_вокзала_N__Администратор_
         {
             return arrival_time_;
         }
+        #endregion
+        #region Работа с БД
+        /// <summary>
+        /// Добавление в БД
+        /// </summary>
         public void AddToDatabase()
         {
             try
@@ -100,6 +110,10 @@ namespace Система_ЖД_вокзала_N__Администратор_
 
             }
         }
+        /// <summary>
+        /// Удаление из БД
+        /// </summary>
+        /// <param name="code"></param>
         public void RemoveFromDatabase(int code)
         {
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=AdminDB.mdb;";
@@ -111,6 +125,10 @@ namespace Система_ЖД_вокзала_N__Администратор_
             oleDbCommand.ExecuteNonQuery();
             connection.Close();
         }
+        /// <summary>
+        /// Обновление в БД
+        /// </summary>
+        /// <param name="code"></param>
         public void ConfirmUpdates(int code)
         {
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=AdminDB.mdb;";
@@ -122,6 +140,11 @@ namespace Система_ЖД_вокзала_N__Администратор_
             oleDbCommand.ExecuteNonQuery();
             connection.Close();
         }
+        /// <summary>
+        /// Перенос из БД в вектор объектов класса 
+        /// </summary>
+        /// <param name="routes"></param>
+        /// <param name="connection"></param>
         public static void FromDBToList(List<Route> routes, OleDbConnection connection)
         {
             routes.Clear();
@@ -135,5 +158,6 @@ namespace Система_ЖД_вокзала_N__Администратор_
             }
             connection.Close();
         }
+        #endregion
     }
 }
