@@ -19,6 +19,7 @@ namespace Система_ЖД_вокзала_N__Администратор_
         private string password_;
         private string FIO_;
         private Type type_;
+        #region Конструкторы
         public Worker()
         {
             login_ = string.Empty;
@@ -33,6 +34,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
             FIO_ = FIO;
             type_ = type;            
         }
+        #endregion
+        #region Сеттеры
         public void SetLogin(string login)
         {
             login_ = login;
@@ -49,6 +52,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
         {
             type_ = type;
         }
+        #endregion
+        #region Геттеры
         public string GetLogin()
         {
             return login_;
@@ -65,6 +70,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
         {
             return type_;
         }
+        #endregion
+        #region Конвертеры
         public static Type TypeFromString(string s)
         {
             switch (s)
@@ -91,6 +98,8 @@ namespace Система_ЖД_вокзала_N__Администратор_
                     return null;
             }
         }
+        #endregion
+        #region Работа с БД
         public void AddToDatabase()
         {
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=AdminDB.mdb;";
@@ -137,5 +146,6 @@ namespace Система_ЖД_вокзала_N__Администратор_
             }
             connection.Close();
         }
+        #endregion
     }
 }
