@@ -10,10 +10,16 @@ namespace Система_ЖД_вокзала_N__Администратор_
 {
     class Logger
     {
+        /// <summary>
+        /// Создание лог-файла
+        /// </summary>
         public void CreateLogFile()
         {
             File.CreateText(Environment.CurrentDirectory + @"/logs/log.log");
         }
+        /// <summary>
+        /// Удаление лог файла
+        /// </summary>
         public void DeleteLogFile()
         {
             if (File.Exists(Environment.CurrentDirectory + @"/logs/log.log"))
@@ -21,6 +27,10 @@ namespace Система_ЖД_вокзала_N__Администратор_
                 File.Delete(Environment.CurrentDirectory + @"/logs/log.log");
             }
         }
+        /// <summary>
+        /// Добавление записи в лог
+        /// </summary>
+        /// <param name="sellHistory"></param>
         public void AddRecordToLog(SellHistory sellHistory)
         {
             if (File.Exists(Environment.CurrentDirectory + @"/logs/log.log"))
@@ -39,6 +49,10 @@ namespace Система_ЖД_вокзала_N__Администратор_
                 streamWriter.Close();
             }
         }
+        /// <summary>
+        /// Вывод лога на экран
+        /// </summary>
+        /// <param name="richTextBox"></param>
         public void OutLogToScreen(RichTextBox richTextBox)
         {
             string[] mas = File.ReadAllLines(Environment.CurrentDirectory + @"/logs/log.log");
